@@ -20,7 +20,7 @@ const carList = [
   },
   {
     name: 'Hyundai Genesis G70',
-    poster: "https://images.wallpapersden.com/image/wxl-porsche-911-carrera-s-need-for-speed_58807.jpg"
+    poster: "http://images.caricos.com/h/hyundai/2018_genesis_g70/images/1920x1080/2018_genesis_g70_3_1920x1080.jpg"
   }
 
 ]
@@ -35,15 +35,23 @@ class App extends Component {
 
   handleButtonNext = () => {
     this.setState({
-      idx : this.state.idx+1,
-      car : carList[this.state.idx+1],
+      idx : (this.state.idx+1) % 4,
+      car : carList[(this.state.idx+1) % 4],
     })
   }
 
   handleButtonPrevious = () => {
+    let newIdx = 0;
+    if(this.state.idx == 0){
+      newIdx = 3;
+    }
+    else{
+      newIdx = this.state.idx-1; 
+    }
+
     this.setState({
-      idx : this.state.idx-1,
-      car : carList[this.state.idx-1],
+      idx : newIdx,
+      car : carList[newIdx]
     })
   }
 
